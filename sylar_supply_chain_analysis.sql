@@ -1,0 +1,750 @@
+-- Data Analysis of a supply chain dataset - source kaggle
+-- created a schema "supply_chain1"
+-- creating a table Sylar_supply_company and then
+-- uploading the dataset from my local disk
+
+USE supply_chain1;
+
+DROP TABLE IF EXISTS Sylar_supply_company;
+CREATE TABLE Sylar_supply_company (
+    Type VARCHAR(50),
+    Days_for_shipping_real INT,
+    Days_for_shipment_scheduled INT,
+    Benefit_per_order DECIMAL(10, 2),
+    Sales_per_customer DECIMAL(10, 2),
+    Delivery_Status VARCHAR(50),
+    Late_delivery_risk INT,
+    Category_Id INT,
+    Category_Name VARCHAR(100),
+    Customer_City VARCHAR(100),
+    Customer_Country VARCHAR(100),
+    Customer_Email VARCHAR(100),
+    Customer_Fname VARCHAR(100),
+    Customer_Id INT,
+    Customer_Lname VARCHAR(100),
+    Customer_Password VARCHAR(100),
+    Customer_Segment VARCHAR(50),
+    Customer_State VARCHAR(50),
+    Customer_Street VARCHAR(255),
+    Customer_Zipcode VARCHAR(20),
+    Department_Id INT,
+    Department_Name VARCHAR(100),
+    Latitude DECIMAL(10, 6),
+    Longitude DECIMAL(10, 6),
+    Market VARCHAR(100),
+    Order_City VARCHAR(100),
+    Order_Country VARCHAR(100),
+    Order_Customer_Id INT,
+    Order_Date DATETIME, -- Will be parsed from string
+    Order_Id INT,
+    Order_Item_Cardprod_Id INT,
+    Order_Item_Discount DECIMAL(10, 2),
+    Order_Item_Discount_Rate DECIMAL(10, 8),
+    Order_Item_Id INT,
+    Order_Item_Product_Price DECIMAL(10, 2),
+    Order_Item_Profit_Ratio DECIMAL(10, 8),
+    Order_Item_Quantity INT,
+    Sales DECIMAL(10, 2),
+    Order_Item_Total DECIMAL(10, 2),
+    Order_Profit_Per_Order DECIMAL(10, 2),
+    Order_Region VARCHAR(100),
+    Order_State VARCHAR(100),
+    Order_Status VARCHAR(50),
+    Order_Zipcode VARCHAR(20),
+    Product_Card_Id INT,
+    Product_Category_Id INT,
+    Product_Description TEXT,
+    Product_Image VARCHAR(255),
+    Product_Name VARCHAR(100),
+    Product_Price DECIMAL(10, 2),
+    Product_Status INT,
+    Shipping_Date DATETIME, -- Will be parsed from string
+    Shipping_Mode VARCHAR(50)
+);
+
+-- uploading the dataset from the local disk
+-- Use the target schema
+USE supply_chain1;
+
+-- 1. Create the table 'Sylar_supply_company' with clean, descriptive column names
+DROP TABLE IF EXISTS Sylar_supply_company;
+CREATE TABLE Sylar_supply_company (
+    Type VARCHAR(50),
+    Days_for_shipping_real INT,
+    Days_for_shipment_scheduled INT,
+    Benefit_per_order DECIMAL(10, 2),
+    Sales_per_customer DECIMAL(10, 2),
+    Delivery_Status VARCHAR(50),
+    Late_delivery_risk INT,
+    Category_Id INT,
+    Category_Name VARCHAR(100),
+    Customer_City VARCHAR(100),
+    Customer_Country VARCHAR(100),
+    Customer_Email VARCHAR(100),
+    Customer_Fname VARCHAR(100),
+    Customer_Id INT,
+    Customer_Lname VARCHAR(100),
+    Customer_Password VARCHAR(100),
+    Customer_Segment VARCHAR(50),
+    Customer_State VARCHAR(50),
+    Customer_Street VARCHAR(255),
+    Customer_Zipcode VARCHAR(20),
+    Department_Id INT,
+    Department_Name VARCHAR(100),
+    Latitude DECIMAL(10, 6),
+    Longitude DECIMAL(10, 6),
+    Market VARCHAR(100),
+    Order_City VARCHAR(100),
+    Order_Country VARCHAR(100),
+    Order_Customer_Id INT,
+    Order_Date DATETIME, -- Target column for the converted date
+    Order_Id INT,
+    Order_Item_Cardprod_Id INT,
+    Order_Item_Discount DECIMAL(10, 2),
+    Order_Item_Discount_Rate DECIMAL(10, 8),
+    Order_Item_Id INT,
+    Order_Item_Product_Price DECIMAL(10, 2),
+    Order_Item_Profit_Ratio DECIMAL(10, 8),
+    Order_Item_Quantity INT,
+    Sales DECIMAL(10, 2),
+    Order_Item_Total DECIMAL(10, 2),
+    Order_Profit_Per_Order DECIMAL(10, 2),
+    Order_Region VARCHAR(100),
+    Order_State VARCHAR(100),
+    Order_Status VARCHAR(50),
+    Order_Zipcode VARCHAR(20),
+    Product_Card_Id INT,
+    Product_Category_Id INT,
+    Product_Description TEXT,
+    Product_Image VARCHAR(255),
+    Product_Name VARCHAR(100),
+    Product_Price DECIMAL(10, 2),
+    Product_Status INT,
+    Shipping_Date DATETIME, -- Target column for the converted date
+    Shipping_Mode VARCHAR(50)
+);
+
+-- Got an error Error 1300 and error 1054
+-- Use Google Gemina to explain the erroe and fix it
+-- Use the target schema
+USE supply_chain1;
+
+-- 1. Create the table 'Sylar_supply_company' with clean, descriptive column names
+-- Using utf8mb4 for full Unicode support and increasing DECIMAL precision to avoid truncation
+DROP TABLE IF EXISTS Sylar_supply_company;
+CREATE TABLE Sylar_supply_company (
+    Type VARCHAR(50),
+    Days_for_shipping_real INT,
+    Days_for_shipment_scheduled INT,
+    Benefit_per_order DECIMAL(14, 2), -- Increased precision
+    Sales_per_customer DECIMAL(14, 2), -- Increased precision
+    Delivery_Status VARCHAR(50),
+    Late_delivery_risk INT,
+    Category_Id INT,
+    Category_Name VARCHAR(100),
+    Customer_City VARCHAR(100),
+    Customer_Country VARCHAR(100),
+    Customer_Email VARCHAR(100),
+    Customer_Fname VARCHAR(100),
+    Customer_Id INT,
+    Customer_Lname VARCHAR(100),
+    Customer_Password VARCHAR(100),
+    Customer_Segment VARCHAR(50),
+    Customer_State VARCHAR(50),
+    Customer_Street VARCHAR(255),
+    Customer_Zipcode VARCHAR(20),
+    Department_Id INT,
+    Department_Name VARCHAR(100),
+    Latitude DECIMAL(14, 6), -- Increased precision for coordinates
+    Longitude DECIMAL(14, 6), -- Increased precision for coordinates
+    Market VARCHAR(100),
+    Order_City VARCHAR(100),
+    Order_Country VARCHAR(100),
+    Order_Customer_Id INT,
+    Order_Date DATETIME, -- Target column for the converted date
+    Order_Id INT,
+    Order_Item_Cardprod_Id INT,
+    Order_Item_Discount DECIMAL(14, 2), -- Increased precision
+    Order_Item_Discount_Rate DECIMAL(12, 8), -- Increased precision for rates
+    Order_Item_Id INT,
+    Order_Item_Product_Price DECIMAL(14, 2), -- Increased precision
+    Order_Item_Profit_Ratio DECIMAL(12, 8), -- Increased precision for rates
+    Order_Item_Quantity INT,
+    Sales DECIMAL(14, 2), -- Increased precision
+    Order_Item_Total DECIMAL(14, 2), -- Increased precision
+    Order_Profit_Per_Order DECIMAL(14, 2), -- Increased precision
+    Order_Region VARCHAR(100),
+    Order_State VARCHAR(100),
+    Order_Status VARCHAR(50),
+    Order_Zipcode VARCHAR(20),
+    Product_Card_Id INT,
+    Product_Category_Id INT,
+    Product_Description TEXT,
+    Product_Image VARCHAR(255),
+    Product_Name VARCHAR(100),
+    Product_Price DECIMAL(14, 2), -- Increased precision
+    Product_Status INT,
+    Shipping_Date DATETIME, -- Target column for the converted date
+    Shipping_Mode VARCHAR(50)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- 2. Load the dataset from the local disk and map/transform the data
+-- FIX 1: Corrected the variable list to 53 variables to align with the CSV columns (Resolves DATETIME error).
+-- FIX 2: Maintained CHARACTER SET latin1 and CONVERT(..., USING utf8mb4) for character safety.
+
+LOAD DATA LOCAL INFILE '/Users/michaelessiful/Desktop/Data Analysis/Supply chain/supply chain 1/DataCoSupplyChainDataset.csv'
+INTO TABLE Sylar_supply_company
+CHARACTER SET latin1 -- Often a better default for non-pure UTF8 CSVs
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES             -- Skips the header row (CSV column names)
+
+-- Define 53 temporary variables (Total 53 CSV columns)
+(
+    @v1, @v2, @v3, @v4, @v5, @v6, @v7, @v8, @v9, @v10, @v11, @v12, @v13, @v14, @v15, @v16, @v17, @v18, @v19, @v20,
+    @v21, @v22, @v23, @v24, @v25, @v26, @v27, @v28, @OrderDateStr, @v30, @v31, @v32, @v33, @v34, @v35, @v36, @v37, @v38,
+    @v39, @v40, @v41, @v42, @v43, @v44, @v45, @v46, @v47, @v48, @v49, @v50, @v51, @ShippingDateStr, @ShippingModeStr
+)
+SET
+    -- Explicitly convert string/text columns to utf8mb4 to handle any character issues
+    Type = NULLIF(CONVERT(@v1 USING utf8mb4), ''),
+    Days_for_shipping_real = NULLIF(@v2, ''),
+    Days_for_shipment_scheduled = NULLIF(@v3, ''),
+    Benefit_per_order = NULLIF(@v4, ''),
+    Sales_per_customer = NULLIF(@v5, ''),
+    Delivery_Status = NULLIF(CONVERT(@v6 USING utf8mb4), ''),
+    Late_delivery_risk = NULLIF(@v7, ''),
+    Category_Id = NULLIF(@v8, ''),
+    Category_Name = NULLIF(CONVERT(@v9 USING utf8mb4), ''),
+    Customer_City = NULLIF(CONVERT(@v10 USING utf8mb4), ''),
+    Customer_Country = NULLIF(CONVERT(@v11 USING utf8mb4), ''),
+    Customer_Email = NULLIF(@v12, ''),
+    Customer_Fname = NULLIF(CONVERT(@v13 USING utf8mb4), ''),
+    Customer_Id = NULLIF(@v14, ''),
+    Customer_Lname = NULLIF(CONVERT(@v15 USING utf8mb4), ''),
+    Customer_Password = NULLIF(@v16, ''),
+    Customer_Segment = NULLIF(CONVERT(@v17 USING utf8mb4), ''),
+    Customer_State = NULLIF(CONVERT(@v18 USING utf8mb4), ''),
+    Customer_Street = NULLIF(CONVERT(@v19 USING utf8mb4), ''),
+    Customer_Zipcode = NULLIF(@v20, ''),
+    Department_Id = NULLIF(@v21, ''),
+    Department_Name = NULLIF(CONVERT(@v22 USING utf8mb4), ''),
+    Latitude = NULLIF(@v23, ''),
+    Longitude = NULLIF(@v24, ''),
+    Market = NULLIF(CONVERT(@v25 USING utf8mb4), ''),
+    Order_City = NULLIF(CONVERT(@v26 USING utf8mb4), ''),
+    Order_Country = NULLIF(CONVERT(@v27 USING utf8mb4), ''),
+    Order_Customer_Id = NULLIF(@v28, ''),
+    -- Convert and insert the Order Date (Set to NULL if string is empty)
+    Order_Date = IF(TRIM(@OrderDateStr) = '', NULL, STR_TO_DATE(@OrderDateStr, '%m/%d/%Y %H:%i:%s')),
+    Order_Id = NULLIF(@v30, ''),
+    Order_Item_Cardprod_Id = NULLIF(@v31, ''),
+    Order_Item_Discount = NULLIF(@v32, ''),
+    Order_Item_Discount_Rate = NULLIF(@v33, ''),
+    Order_Item_Id = NULLIF(@v34, ''),
+    Order_Item_Product_Price = NULLIF(@v35, ''),
+    Order_Item_Profit_Ratio = NULLIF(@v36, ''),
+    Order_Item_Quantity = NULLIF(@v37, ''),
+    Sales = NULLIF(@v38, ''),
+    Order_Item_Total = NULLIF(@v39, ''),
+    Order_Profit_Per_Order = NULLIF(@v40, ''),
+    Order_Region = NULLIF(CONVERT(@v41 USING utf8mb4), ''),
+    Order_State = NULLIF(CONVERT(@v42 USING utf8mb4), ''),
+    Order_Status = NULLIF(CONVERT(@v43 USING utf8mb4), ''),
+    Order_Zipcode = NULLIF(@v44, ''),
+    Product_Card_Id = NULLIF(@v45, ''),
+    Product_Category_Id = NULLIF(@v46, ''),
+    Product_Description = NULLIF(CONVERT(@v47 USING utf8mb4), ''),
+    Product_Image = NULLIF(@v48, ''),
+    Product_Name = NULLIF(CONVERT(@v49 USING utf8mb4), ''),
+    Product_Price = NULLIF(@v50, ''),
+    Product_Status = NULLIF(@v51, ''),
+    -- Convert and insert the Shipping Date (Set to NULL if string is empty)
+    Shipping_Date = IF(TRIM(@ShippingDateStr) = '', NULL, STR_TO_DATE(@ShippingDateStr, '%m/%d/%Y %H:%i:%s')),
+    Shipping_Mode = NULLIF(CONVERT(@ShippingModeStr USING utf8mb4), ''); -- Correctly mapped last column
+    
+-- Data cleaning and Aggregation
+USE supply_chain1;
+ALTER TABLE Sylar_supply_company
+DROP column product_image,
+drop column product_description,
+drop column  product_status;
+
+-- Identify missing Customer First Name or Last Name
+SELECT COUNT(*) AS Missing_Customer_Names
+FROM Sylar_supply_company
+WHERE (Customer_Fname IS NULL OR TRIM(Customer_Fname) = '')
+OR (Customer_Lname IS NULL OR TRIM(Customer_Lname) = ''); -- 8 missing customer names
+
+-- Ensuring Late_delivery_risk only contains 0 or 1
+SELECT DISTINCT Late_delivery_risk FROM SupplyChainData; -- doesn't exist
+
+-- Checking for leading/trailing spaces in key fields - none
+SELECT 
+    'Delivery Status' AS Field, 
+    Delivery_Status, 
+    COUNT(*) AS Count
+FROM Sylar_supply_company
+WHERE Delivery_Status != TRIM(Delivery_Status)
+GROUP BY 2; -- 
+
+-- creating new columns to help analysis (Delivery_lead_time_days, Delivery_variation, order_item_profit_actual, Gross_selling_price, order month, order_day_of_the_week, and order_hour)
+-- Delivery_lead_time_days
+
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE Sylar_supply_company 
+SET Delivery_Lead_Time_Days = DATEDIFF(Shipping_date, Order_Date);
+UPDATE Sylar_supply_company 
+SET Delivery_Time_Variance = Days_for_shipping_real - Days_for_shipment_scheduled;
+
+-- Delivery_variation
+ALTER TABLE Sylar_supply_company ADD COLUMN Delivery_Time_Variance INT;
+UPDATE Sylar_supply_company 
+SET Delivery_Time_Variance = Days_for_shipping_real - Days_for_shipment_scheduled;
+
+-- order_item_profit_actual
+ALTER TABLE Sylar_supply_company ADD COLUMN Order_Item_Profit_Actual DECIMAL(10, 2);
+UPDATE Sylar_supply_company 
+SET Order_Item_Profit_Actual = Order_Item_Total * Order_Item_Profit_Ratio;
+
+-- Gross_selling_price
+ALTER TABLE Sylar_supply_company ADD COLUMN Gross_Selling_Price DECIMAL(10, 2);
+UPDATE Sylar_supply_company
+SET Gross_Selling_Price = Order_Item_Product_Price * Order_Item_Quantity;
+
+-- order month
+ALTER TABLE Sylar_supply_company ADD COLUMN Order_Month INT;
+UPDATE Sylar_supply_company 
+SET Order_Month = MONTH(Order_Date);
+
+-- order_day_of_the_week
+ALTER TABLE Sylar_supply_company ADD COLUMN Order_Day_of_Week INT;
+UPDATE Sylar_supply_company 
+SET Order_Day_of_Week = DAYOFWEEK(Order_Date);
+
+-- order_hour
+ ALTER TABLE Sylar_supply_company ADD COLUMN Order_Hour INT;
+UPDATE Sylar_supply_company 
+SET Order_Hour = HOUR(Order_Date);
+
+-- Data Aggregation
+
+-- I. DEMAND & SALES ANALYSIS (Focus: What, When, and Who is buying)
+use supply_chain1;
+-- I.1. Total Units Sold by Time (Seasonality and Peak Hours)
+-- Analyzing quantity sold by month and hour to identify demand patterns for inventory and staffing.
+SELECT
+    Order_Month,
+    Order_Hour,
+    SUM(Order_Item_Quantity) AS Total_Units_Sold,
+    SUM(Sales) AS Total_Sales_Value
+FROM 
+    Sylar_supply_company
+GROUP BY 
+    Order_Month, 
+    Order_Hour
+ORDER BY 
+    Total_Units_Sold DESC;
+
+-- I.2. Top 10 Product Categories by Total Sales
+-- Identifing the most revenue-generating product categories.
+SELECT
+    Category_Name,
+    COUNT(DISTINCT Order_Id) AS Total_Orders,
+    SUM(Sales) AS Total_Sales
+FROM
+    Sylar_supply_company
+GROUP BY
+    Category_Name
+ORDER BY
+    Total_Sales DESC
+LIMIT 10;
+
+-- I.3. Average Order Value (AOV) by Customer Segment
+-- Analyzing the spending behavior across different customer groups.
+SELECT
+    Customer_Segment,
+    COUNT(DISTINCT Order_Id) AS Number_of_Orders,
+    AVG(Order_Item_Total) AS Average_Order_Item_Value,
+    SUM(Order_Item_Total) / COUNT(DISTINCT Order_Id) AS Average_Order_Value -- Approximated AOV
+FROM
+    Sylar_supply_company
+GROUP BY
+    Customer_Segment
+ORDER BY
+    Average_Order_Item_Value DESC;
+
+-- I.4. Order Volume by Final Order Status
+-- identifying issues like fraud, cancellations, or pending payments.
+SELECT
+    Order_Status,
+    COUNT(Order_Id) AS Total_Order_Items,
+    COUNT(DISTINCT Order_Id) AS Total_Unique_Orders,
+    SUM(Sales) AS Total_Sales_Value
+FROM
+    Sylar_supply_company
+GROUP BY
+    Order_Status
+ORDER BY
+    Total_Unique_Orders DESC;
+
+-- I.5. Geographic Demand Density (Top 10 Order States)
+-- Ranking demand by state to inform regional logistics planning.
+SELECT
+    Order_State,
+    COUNT(DISTINCT Order_Id) AS Total_Orders
+FROM
+    Sylar_supply_company
+GROUP BY
+    Order_State
+ORDER BY
+    Total_Orders DESC
+LIMIT 10;
+
+-- II. SUPPLY & LOGISTICS EFFICIENCY (Focus: Speed, Reliability, and Variance)
+
+
+-- II.1. On-Time Delivery Rate (OTD) by Shipping Mode (Core KPI)
+
+-- Measuring reliability and speed across different shipping options.
+SELECT
+    Shipping_Mode,
+    COUNT(*) AS Total_Shipments,
+    SUM(Is_Delayed_Flag) AS Total_Delayed_Shipments,
+    (1 - AVG(Is_Delayed_Flag)) * 100 AS OTD_Rate_Percentage, -- 1 - (Total Delays / Total Shipments)
+    AVG(Delivery_Lead_Time_Days) AS Avg_Lead_Time_Days
+FROM
+    Sylar_supply_company
+GROUP BY
+    Shipping_Mode
+ORDER BY
+    OTD_Rate_Percentage DESC;
+
+-- II.2. Average Delivery Lead Time by Region
+-- Comparing fulfillment performance across different market regions.
+SELECT
+    Order_Region,
+    COUNT(DISTINCT Order_Id) AS Total_Orders,
+    AVG(Delivery_Lead_Time_Days) AS Avg_Delivery_Lead_Time_Days
+FROM
+    Sylar_supply_company
+GROUP BY
+    Order_Region
+HAVING
+    COUNT(DISTINCT Order_Id) > 100 -- Filter for statistically relevant regions
+ORDER BY
+    Avg_Delivery_Lead_Time_Days ASC;
+
+-- II.3. Delivery Time Variance by Fulfillment Department
+-- Pinpointing departments that struggle most with meeting scheduled shipment times.
+SELECT
+    Department_Name,
+    COUNT(*) AS Total_Shipments,
+    AVG(Delivery_Time_Variance) AS Avg_Variance_Days, -- Positive = late, Negative = early
+    SUM(Is_Delayed_Flag) AS Total_Delays
+FROM
+    Sylar_supply_company
+GROUP BY
+    Department_Name
+ORDER BY
+    Avg_Variance_Days DESC;
+
+-- II.4. Location-Specific Delays (Top 10 Worst Performing Cities)
+-- focusing resource allocation to fix localized logistic bottlenecks.
+SELECT
+    Order_City,
+    Order_Country,
+    SUM(Is_Delayed_Flag) AS Total_Delayed_Orders,
+    COUNT(Order_Id) AS Total_Orders
+FROM
+    Sylar_supply_company
+GROUP BY
+    Order_City, 
+    Order_Country
+HAVING
+    Total_Orders > 50 -- Ensure sufficient volume for meaningful analysis
+ORDER BY
+    Total_Delayed_Orders DESC
+LIMIT 10;
+
+-- II.5. Risk Assessment Accuracy
+-- Checking how often the initial 'Late_delivery_risk' flag matched the actual outcome.
+SELECT
+    Late_delivery_risk, -- The initial predicted risk
+    SUM(CASE WHEN Is_Delayed_Flag = 1 THEN 1 ELSE 0 END) AS Actual_Delays_Observed,
+    COUNT(*) AS Total_Count,
+    (SUM(CASE WHEN Is_Delayed_Flag = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*)) AS Actual_Delay_Rate
+FROM
+    Sylar_supply_company
+GROUP BY
+    Late_delivery_risk;
+    
+-- III. FINANCIAL PERFORMANCE (Focus: Profitability, Margin, and Cost)
+
+-- III.1. Top 5 Most Profitable Categories (Using the new calculated profit column)
+
+-- Identifing where the business makes the most absolute profit.
+SELECT
+    Category_Name,
+    SUM(Order_Item_Profit_Actual) AS Total_Net_Profit,
+    SUM(Gross_Selling_Price) AS Total_Gross_Revenue
+FROM
+    Sylar_supply_company
+GROUP BY
+    Category_Name
+ORDER BY
+    Total_Net_Profit DESC
+LIMIT 10;
+
+-- III.2. Gross Margin Percentage by Customer Segment
+-- Measuring the profitability rate across different customer types.
+SELECT
+    Customer_Segment,
+    SUM(Order_Item_Profit_Actual) AS Total_Net_Profit,
+    SUM(Gross_Selling_Price) AS Total_Gross_Revenue,
+    (SUM(Order_Item_Profit_Actual) / SUM(Gross_Selling_Price)) * 100 AS Gross_Margin_Percentage
+FROM
+    Sylar_supply_company
+GROUP BY
+    Customer_Segment
+ORDER BY
+    Gross_Margin_Percentage DESC;
+
+-- III.3. Total Discount Cost Analysis by Month
+-- Tracking the total dollar cost of discounts over time to evaluate promotion strategy.
+SELECT
+    Order_Month,
+    SUM(Item_Discount_Amount) AS Total_Discount_Cost
+FROM
+    Sylar_supply_company
+GROUP BY
+    Order_Month
+ORDER BY
+    Order_Month ASC;
+
+-- III.4. Financial Impact of Negative Order Statuses
+-- Quantifing the profit loss associated with non-complete orders.
+SELECT
+    Order_Status,
+    COUNT(DISTINCT Order_Id) AS Total_Orders,
+    SUM(Order_Item_Profit_Actual) AS Net_Profit_Impact -- Negative value indicates loss
+FROM
+    Sylar_supply_company
+WHERE
+    Order_Status IN ('CANCELED', 'SUSPECTED_FRAUD', 'ON_HOLD', 'PAYMENT_REVIEW')
+GROUP BY
+    Order_Status
+ORDER BY
+    Net_Profit_Impact ASC;
+
+-- III.5. Average Benefit per Order by Market
+-- Comparing the average earnings per order across different global markets.
+SELECT
+    Market,
+    COUNT(DISTINCT Order_Id) AS Total_Orders,
+    AVG(Benefit_per_order) AS Average_Benefit_per_Order
+FROM
+    Sylar_supply_company
+GROUP BY
+    Market
+ORDER BY
+    Average_Benefit_per_Order DESC;
+    
+-- IV. overall business performance dashbiard
+-- Aggregates all high-level metrics into a single row for a KPI dashboard.
+SELECT
+    SUM(Sales) AS Total_Revenue,
+    SUM(Order_Item_Profit_Actual) AS Total_Net_Profit,
+    COUNT(DISTINCT Order_Id) AS Total_Orders,
+    SUM(Order_Item_Quantity) AS Total_Items_Sold,
+    (SUM(Sales) / COUNT(DISTINCT Order_Id)) AS Overall_Average_Order_Value,
+    (SUM(Order_Item_Profit_Actual) / SUM(Sales)) * 100 AS Overall_Profit_Margin_Pct,
+    AVG(Order_Item_Discount_Rate) * 100 AS Average_Discount_Rate_Pct
+FROM
+    Sylar_supply_company;
+    
+-- V. DELIVERY & LOGISTICS PERFORMANCE
+
+-- Finding the Percentage of orders by Delivery_Status
+SELECT
+    Delivery_Status,
+    COUNT(*) AS Total_Order_Items,
+    (COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Sylar_supply_company)) AS Percentage_of_Total
+FROM
+    Sylar_supply_company
+GROUP BY
+    Delivery_Status
+ORDER BY
+    Total_Order_Items DESC;
+    
+-- VI. SALES & PROFITABILITY ANALYSIS 
+
+-- Finding Profitability metrics aggregated by Fulfillment Department
+SELECT
+    Department_Name,
+    SUM(Sales) AS Total_Sales,
+    SUM(Order_Item_Profit_Actual) AS Total_Profit,
+    SUM(Order_Item_Quantity) AS Total_Quantity_Sold,
+    AVG(Order_Item_Profit_Actual) AS Avg_Profit_Per_Item,
+    (SUM(Order_Item_Profit_Actual) / SUM(Gross_Selling_Price)) * 100 AS Gross_Margin_Pct
+FROM
+    Sylar_supply_company
+GROUP BY
+    Department_Name
+ORDER BY
+    Total_Profit DESC;   
+ 
+ -- VII. TEMPORAL (TIME-BASED) ANALYSIS
+ 
+ -- Fining the total Sales and Profit trend over time, grouped by Year and Quarter.
+SELECT
+    YEAR(Order_Date) AS Order_Year,
+    QUARTER(Order_Date) AS Order_Quarter,
+    COUNT(DISTINCT Order_Id) AS Total_Orders,
+    SUM(Sales) AS Total_Sales,
+    SUM(Order_Item_Profit_Actual) AS Total_Profit
+FROM
+    Sylar_supply_company
+GROUP BY
+    Order_Year,
+    Order_Quarter
+ORDER BY
+    Order_Year,
+    Order_Quarter;
+
+-- VIII. CUSTOMER BEHAVIOR & SEGMENTATION
+
+-- Calculating the Repeat Purchase Rate (customers who ordered more than once) and CLV approximation.
+WITH CustomerSales AS (
+    -- Group all transactions by customer to calculate total sales and order count
+    SELECT
+        Customer_Id,
+        COUNT(DISTINCT Order_Id) AS Total_Orders,
+        SUM(Sales) AS Total_Customer_Revenue
+    FROM
+        Sylar_supply_company
+    GROUP BY
+        Customer_Id
+)
+SELECT
+    COUNT(Customer_Id) AS Total_Customers,
+    SUM(CASE WHEN Total_Orders > 1 THEN 1 ELSE 0 END) AS Repeat_Customers,
+    (SUM(CASE WHEN Total_Orders > 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(Customer_Id)) AS Repeat_Purchase_Rate_Pct,
+    AVG(Total_Customer_Revenue) AS Average_Customer_Lifetime_Value_CLV
+FROM
+    CustomerSales;
+ 
+-- IX. GEOGRAPHIC INSIGHTS (Revenue, Profit, and Late Rate by Country)
+
+-- Comparing profitability and logistics performance across different ordering countries.
+SELECT
+    Order_Country,
+    COUNT(DISTINCT Order_Id) AS Total_Orders,
+    SUM(Sales) AS Total_Revenue,
+    SUM(Order_Item_Profit_Actual) AS Total_Profit,
+    AVG(Is_Delayed_Flag) * 100 AS Late_Delivery_Rate_Pct
+FROM
+    Sylar_supply_company
+GROUP BY
+    Order_Country
+HAVING
+    Total_Orders > 50 -- Filter out countries with minimal data
+ORDER BY
+    Total_Revenue DESC; 
+
+-- X. Cancellation and Fraud check
+-- Identifies product categories associated with the highest rate of problem orders (Canceled/Fraud).
+WITH ProductStatus AS (
+    SELECT
+        Category_Name,
+        COUNT(*) AS Total_Orders,
+        SUM(CASE WHEN Order_Status IN ('CANCELED', 'SUSPECTED_FRAUD') THEN 1 ELSE 0 END) AS Problem_Orders
+    FROM
+        Sylar_supply_company
+    GROUP BY
+        Category_Name
+)
+SELECT
+    Category_Name,
+    Total_Orders,
+    Problem_Orders,
+    (Problem_Orders * 100.0 / Total_Orders) AS Problem_Order_Rate_Pct
+FROM
+    ProductStatus
+WHERE
+    Total_Orders > 100 -- Ignore categories with very low volume
+ORDER BY
+    Problem_Order_Rate_Pct DESC
+LIMIT 10;
+
+-- XI. DISCOUNT & PRICING ANALYSIS (Revenue Lost)
+
+-- Measures the total dollar amount of revenue lost due to discounts, broken down by Market.
+SELECT
+    Market,
+    SUM(Item_Discount_Amount) AS Total_Revenue_Lost_to_Discounts,
+    SUM(Gross_Selling_Price) AS Total_Potential_Revenue,
+    (SUM(Item_Discount_Amount) / SUM(Gross_Selling_Price)) * 100 AS Average_Discount_Pct_of_Revenue
+FROM
+    Sylar_supply_company
+GROUP BY
+    Market
+ORDER BY
+    Total_Revenue_Lost_to_Discounts DESC;
+
+-- XII. FRAUD & ORDER STATUS INSIGHTS (Fraud Rate by Payment Type)
+
+-- Analyzing the fraud rate across different payment types (found in the 'Type' column).
+SELECT
+    Type AS Payment_Type,
+    COUNT(*) AS Total_Transactions,
+    SUM(CASE WHEN Order_Status = 'SUSPECTED_FRAUD' THEN 1 ELSE 0 END) AS Fraud_Count,
+    (SUM(CASE WHEN Order_Status = 'SUSPECTED_FRAUD' THEN 1 ELSE 0 END) * 100.0 / COUNT(*)) AS Fraud_Rate_Pct
+FROM
+    Sylar_supply_company
+GROUP BY
+    Type
+ORDER BY
+    Fraud_Rate_Pct DESC;
+ 
+ -- XIII. OPERATIONAL EFFICIENCY (Items per Order & Order Frequency)
+ 
+ -- Calculating key operational averages.
+SELECT
+    COUNT(DISTINCT Order_Id) / COUNT(DISTINCT DATE(Order_Date)) AS Avg_Orders_Per_Day,
+    AVG(Order_Item_Quantity) AS Avg_Items_Per_Order_Line_Item,
+    AVG(Items_Per_Order.Line_Items) AS Avg_Line_Items_Per_Order
+FROM
+    Sylar_supply_company
+JOIN (
+    -- Subquery to count the number of line items (Order_Item_Id) for each unique Order
+    SELECT
+        Order_Id,
+        COUNT(Order_Item_Id) AS Line_Items
+    FROM
+        Sylar_supply_company
+    GROUP BY
+        Order_Id
+) AS Items_Per_Order ON Sylar_supply_company.Order_Id = Items_Per_Order.Order_Id;
+
+-- XIV. PROFITABILITY DRIVERS (Impact of Delivery Variance on Profit)
+
+-- Aggregating profit by delivery performance buckets to see if late deliveries (high variance) impact profit.
+SELECT
+    CASE
+        WHEN Delivery_Time_Variance <= -2 THEN '1_Very_Early'
+        WHEN Delivery_Time_Variance <= 0 THEN '2_On_Time_or_Slightly_Early'
+        WHEN Delivery_Time_Variance <= 2 THEN '3_Slightly_Late'
+        ELSE '4_Significantly_Late'
+    END AS Delivery_Performance_Bucket,
+    COUNT(DISTINCT Order_Id) AS Total_Orders,
+    AVG(Benefit_per_order) AS Avg_Benefit_per_Order,
+    AVG(Order_Item_Profit_Actual) AS Avg_Item_Profit
+FROM
+    Sylar_supply_company
+GROUP BY
+    Delivery_Performance_Bucket
+ORDER BY
+    Delivery_Performance_Bucket;
